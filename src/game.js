@@ -40,21 +40,22 @@ $.Game = {
    */
   start: function() {
     // Get a reference to each of the elements in the DOM that we'll need to update.
-    $.screen = document.getElementById("screen");
-    $.shadow = document.getElementById("shadow");
+    $.screen = document.getElementById('screen');
+    $.shadow = document.getElementById('shadow');
     $.grass = document.getElementById('grass');
-    $.mist = document.getElementById("mist");
-    $.power = document.getElementById("power");
-    $.msg1 = document.getElementById("msg1");
-    $.msg2 = document.getElementById("msg2");
-    $.rocks = document.getElementById("rocks");
-    $.enemies = document.getElementById("enemies");
-    $.level = document.getElementById("level");
-    $.zone = document.getElementById("zone");
-    $.score = document.getElementById("score");
-    $.hiscore = document.getElementById("hi");
-    $.story = document.getElementById("story");
-    $.loading = document.getElementById("loading");
+    $.sky = document.getElementById('sky');
+    $.mist = document.getElementById('mist');
+    $.power = document.getElementById('power');
+    $.msg1 = document.getElementById('msg1');
+    $.msg2 = document.getElementById('msg2');
+    $.rocks = document.getElementById('rocks');
+    $.enemies = document.getElementById('enemies');
+    $.level = document.getElementById('level');
+    $.zone = document.getElementById('zone');
+    $.score = document.getElementById('score');
+    $.hiscore = document.getElementById('hi');
+    $.story = document.getElementById('story');
+    $.loading = document.getElementById('loading');
 
     // Build the mappings between the key codes and the action names.
     $.keyMap[33] = $.keyMap[105] = 'ne';
@@ -84,25 +85,24 @@ $.Game = {
 
     // Render the favicon and grass.
     this.renderFavicon();
-    
-    // TODO: Add msg3 for Loading...
-    
-    // The following items are a bit time consuming on slower machines.
     this.grass1 = this.renderGrass();
     this.grass2 = this.renderGrass();
     this.grassCtx = $.grass.getContext('2d');
     this.grassCtx.drawImage(this.grass2, 0, 0);
     
+    // Render sky immediately after the grass is drawn so they appear at the same time.
+    $.sky.classList.add('sky');
+    
     // Add some mist for the story screen. Will get cleared by the renderMist method when the game starts.
     $.mist.style.boxShadow = 'rgb(209, 238, 238) 0px 0px 60px 30px, rgb(209, 238, 238) 0px 39px 35px -16px inset';
     
     // Fade in the story for the player to read.
-    this.fadeIn(document.getElementById("wrap"));
     this.fadeIn($.story);
     
+    // The sound generation might be a bit time consuming on slower machines.
     $.Sound.init();
     $.loading.innerHTML = 'Press SPACE to continue...';
-    this.enableKeys();
+    $.Game.enableKeys();
     
     var storyWait = setInterval(function() {
       // Check to see if the player has pressed space.
