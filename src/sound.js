@@ -58,7 +58,7 @@ $.Sound = {
         audio.src = URL.createObjectURL(new Blob([player.createWave()], {type: "audio/wav"}));
         // This is background music, so we set it to loop and turn the volume down a bit.
         audio.loop = true;
-        audio.volume = 0.25;
+        audio.volume = 0.35;
       }
       this.sounds[name].pool.push(audio);
     }

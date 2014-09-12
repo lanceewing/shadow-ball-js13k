@@ -31,6 +31,11 @@ $.Game = {
   paused: true,
   
   /**
+   * Says whether the game loop is currently counting down or not.
+   */
+  counting: false,
+  
+  /**
    * The countdown time for when the game unpauses.
    */
   countdown: 0,
@@ -106,9 +111,9 @@ $.Game = {
     var storyWait = setInterval(function() {
       // Check to see if the player has pressed space.
       if ($.keys['jump']) {
+        clearInterval(storyWait);
         $.Game.disableKeys();
         $.Game.fadeOut($.story);
-        clearInterval(storyWait);
         
         setTimeout(function() {
           // Show the title screen.
@@ -228,6 +233,11 @@ $.Game = {
    * Invoked when the player dies.  
    */
   gameover: function() {
+    // Remove the keyboard input temporarily, just in case the player was rapid
+    // firing when they died. We don't want them to immediately trigger a game
+    // restart if they didn't want to.
+    this.disableKeys();
+    
     // This tells the game loop that the game needs to be re-initialised the next 
     // time the player unpauses the game.
     this.running = false;
@@ -247,11 +257,6 @@ $.Game = {
     setTimeout(function() {
       $.ego.stop();
     }, 100);
-    
-    // Remove the keyboard input temporarily, just in case the player was rapid
-    // firing when they died. We don't want them to immediately trigger a game
-    // restart if they didn't want to.
-    this.disableKeys();
     
     // After 5 seconds, enable keyboard input again and ask the player to press 
     // SPACE to restart.
@@ -325,16 +330,22 @@ $.Game = {
             // Unpause the game after "Go" has faded.
             setTimeout(function() {
               $.Game.paused = false;
+              $.Game.counting = false;
             }, 500);
           }
         }
-      } else {
+      } else if (!this.counting) {
         // We're paused and have focus, but haven't started countdown yet. Check for space key.
         if (!$.oldkeys['jump'] && $.keys['jump']) {
           // The space key was pressed, so we start the countdown process. This gives the player
           // some time to get ready.
           this.fadeOut($.msg1);
           this.fadeOut($.msg2);
+          
+          // This says countdown is about to start (in 1 second).
+          this.counting = true;
+          
+          // Start the countdown in 1 second. Gives the previous messages time to fade.
           setTimeout(function() {
             if (!$.Game.running) $.Game.init();
             $.Game.countdown = 3000;
@@ -346,6 +357,7 @@ $.Game = {
     } else {
       // In paused state and does not have focus.
       this.countdown = 0;
+      this.counting = false;
     }
     
     // Keep track of what the previous state of each key was.
