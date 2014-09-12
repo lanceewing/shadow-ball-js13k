@@ -115,29 +115,32 @@ $.Ego.prototype.update = function() {
 
   if ($.keys['jump']) {
     if (!$.oldkeys['jump']) {
-	    // This is the initial press of the jump key.
-	    direction = $.Sprite.UP;
-	    
-	    // Is Ego above the ground?
-	    if (this.y > 0) {
-	      if (this.bounce) {
-	        // The bounce flag is true if Ego is standing on something that is not the
-	        // ground, such as a Rock or the power Orb. If this is the case, then it is
-	        // handled as a normal jump, except that we adjust the maxY, i.e. top of 
-	        // the jump, to cater for the height above ground that Ego is standing.
-	        $.Sound.play('jump');
-	        this.maxY = 200 + this.y;
-	      } else {
-	        // Pressing jump in mid air will make Ego hover/fly (i.e. we set both UP and DOWN as on).
+      // This is the initial press of the jump key.
+      direction = $.Sprite.UP;
+
+      // Is Ego above the ground?
+      if (this.y > 0) {
+        if (this.bounce) {
+          // The bounce flag is true if Ego is standing on something that is not the
+          // ground, such as a Rock or the power Orb. If this is the case, then it is
+          // handled as a normal jump, except that we adjust the maxY, i.e. top of
+          // the jump, to cater for the height above ground that Ego is standing.
+          $.Sound.play('jump');
+          this.maxY = 200 + this.y;
+        } else {
+          // Pressing jump in mid air will make Ego hover/fly (i.e. we set both
+          // UP and DOWN as on).
           direction |= $.Sprite.DOWN;
-	      }
+        }
       } else {
-        // Else if y is 0, then Ego is on the ground and so the jump is a normal ground jump.
+        // Else if y is 0, then Ego is on the ground and so the jump is a normal
+        // ground jump.
         $.Sound.play('jump');
       }
-	  }
-  } else if ((this.y > 0) && (direction == $.Sprite.UP_DOWN))  {
-    // If Ego was hovering/flying and the jump key no longer pressed then he starts to fall.
+    }
+  } else if ((this.y > 0) && (direction == $.Sprite.UP_DOWN)) {
+    // If Ego was hovering/flying and the jump key no longer pressed then he
+    // starts to fall.
     direction = $.Sprite.DOWN;
   }
   
