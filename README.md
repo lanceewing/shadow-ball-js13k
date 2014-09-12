@@ -18,7 +18,7 @@ This is an an entry for [js13kGames](http://js13kgames.com) 2014. The theme for 
 Hold down the Space key in mid-air to fly.
 
 #Notes#
-Best played in Chrome, on a reasonably fast computer with a semi-decent graphics card. Works reasonably well in Firefox as well.
+Best played in Chrome, on a reasonably fast computer, with a semi-decent graphics card.
 
 I was hoping to build this game within a single canvas, but I ran into a number of rendering issues with the canvas approach, even though I followed the usual advice about using requestAnimationFrame, etc. I decided to continue by prototyping with DOM sprites instead since it was performing a lot better at that time. Then halfway through the competition, I realised that my browser wasn't using hardware acceleration for the canvas. So I spent a few days switching it back to canvas, then tried forcing the browser to use hardware acceleration, and ironically it performed significantly worse than when the canvas wasn't using hardware acceleration. I even resorted to buying a new graphics card but DOM sprites still seemed to be performing better. I think it's something to do with Chrome on Linux and the acceleration support for the canvas, and possibly drivers. So to stop burning up time, I ended up switching it back to DOM sprites again and continued with that approach. It is possible it might be a little jerky on slower modern PCs, but it runs smooth on my i7 4771. Hopefully you'll all be able to enjoy it.
 
