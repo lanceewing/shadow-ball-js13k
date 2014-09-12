@@ -117,7 +117,7 @@ $.Game = {
           $.Sound.play('music');
           $.Game.loop();
           
-          // Renable keyboard input after a short delay.
+          // Re-enable keyboard input after a short delay.
           setTimeout(function() {
             $.Game.showText(2, 'Press SPACE to start');
             $.Game.enableKeys();
@@ -256,7 +256,7 @@ $.Game = {
     setTimeout(function() {
       $.Game.showText(2, 'Press SPACE to restart');
       $.Game.enableKeys();
-    }, 5000);
+    }, 3000);
   },
   
   /**
@@ -496,7 +496,7 @@ $.Game = {
       obj.setPosition((Math.random() * 450) + 100, 0, (Math.random() * 300) + 100 + 500);
 
       // Check that it isn't too close to another obj in the same room.
-      if (!this.touching(obj, 100)) {
+      if (!this.touching(obj, Math.max(110 - (this.level * 10), 0))) {
         this.add(obj, room);
         return;
       }
