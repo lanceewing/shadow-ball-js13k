@@ -7,13 +7,13 @@ This is an an entry for [js13kGames](http://js13kgames.com) 2014. The theme for 
 **Final Size:** TODO
 
 #Controls#
-**Move:** Arrows 
+**Move:** Arrows
 **Jump:** SPACE
 **Fire:** M
 **Absorb:** N
 **Push:** B
 **Pickup/Drop:** V
-**Pause:** P  
+**Pause:** P
 
 #Notes#
 Best played in Chrome, on a reasonably fast computer with a semi-decent graphics card. Works reasonably well in Firefox as well.
