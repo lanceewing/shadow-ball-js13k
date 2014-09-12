@@ -91,7 +91,7 @@ $.Sprite.prototype.touching = function(obj, gap) {
   if (obj) {
     var dx = this.cx - obj.cx;
     var dy = (this.cy - obj.cy);
-    var dz = Math.abs(this.z - obj.z) + 15;   // TODO: This value needs to be derived from radius.
+    var dz = Math.abs(this.z - obj.z) + 15;
     var dist = (dx * dx) + (dy * dy) + (dz * dz);
     var rsum = (this.radius + obj.radius + (gap | 0));
     return (dist <= (rsum * rsum));
@@ -119,7 +119,6 @@ $.Sprite.prototype.reset = function() {
   
   if (pos) {
     this.setPosition(pos.x, pos.y, pos.z);
-    // TODO: Needs to be a cleaner way of resetting. Popping twice seems messy.
     this.positions.pop();
   }
 

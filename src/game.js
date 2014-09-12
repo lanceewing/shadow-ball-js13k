@@ -74,14 +74,13 @@ $.Game = {
     $.keyMap[80] = 'pause';
     
     // Register the event listeners for handling auto pause when the game loses focus.
-    // TODO: Disabled so as to test timeline frame stuff.
-//    window.addEventListener('blur', function(e) {
-//      $.Game.hasFocus = false;
-//    });
-//    
-//    window.addEventListener('focus', function(e) {
-//      $.Game.hasFocus = true;
-//    });
+    window.addEventListener('blur', function(e) {
+      $.Game.hasFocus = false;
+    });
+    
+    window.addEventListener('focus', function(e) {
+      $.Game.hasFocus = true;
+    });
 
     // Render the favicon and grass.
     this.renderFavicon();
@@ -322,7 +321,11 @@ $.Game = {
             // Otherwise countdown has completed, so we un-pause the game.
             $.Sound.play('count');
             this.showText(1, 'Go', true);
-            this.paused = false;
+            
+            // Unpause the game after "Go" has faded.
+            setTimeout(function() {
+              $.Game.paused = false;
+            }, 500);
           }
         }
       } else {

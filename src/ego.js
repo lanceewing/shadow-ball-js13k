@@ -162,7 +162,6 @@ $.Ego.prototype.update = function() {
       // The Rock was successfully dropped, so adjust Ego's position to be above the Rock
       // and in a jumping state. This makes it look like Ego jumped up and dropped at the
       // same time.
-      // TODO: This doesn't work if there is a Rock above Ego. Need to check for that, or place rock in a different position.
       this.setPosition(this.x, this.y + 100, this.z);
       this.maxY = this.y + 40;
       direction |= $.Sprite.UP;
