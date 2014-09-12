@@ -54,6 +54,7 @@ $.Game = {
     $.score = document.getElementById("score");
     $.hiscore = document.getElementById("hi");
     $.story = document.getElementById("story");
+    $.loading = document.getElementById("loading");
 
     // Build the mappings between the key codes and the action names.
     $.keyMap[33] = $.keyMap[105] = 'ne';
@@ -91,7 +92,6 @@ $.Game = {
     this.grass2 = this.renderGrass();
     this.grassCtx = $.grass.getContext('2d');
     this.grassCtx.drawImage(this.grass2, 0, 0);
-    $.Sound.init();
     
     // Add some mist for the story screen. Will get cleared by the renderMist method when the game starts.
     $.mist.style.boxShadow = 'rgb(209, 238, 238) 0px 0px 60px 30px, rgb(209, 238, 238) 0px 39px 35px -16px inset';
@@ -99,6 +99,9 @@ $.Game = {
     // Fade in the story for the player to read.
     this.fadeIn(document.getElementById("wrap"));
     this.fadeIn($.story);
+    
+    $.Sound.init();
+    $.loading.innerHTML = 'Press SPACE to continue...';
     this.enableKeys();
     
     var storyWait = setInterval(function() {
@@ -820,13 +823,28 @@ $.Game = {
    * each pixel so that it looks like blades of grass from a distance.
    */
   renderGrass: function() {
+    // Render the base colour over the whole grass area first.
     var ctx = $.Util.create2dContext(700, 235);
-    for (var i = 0; i < 700; i++) {
-      for (var j = 0; j < 235; j++) {
-        ctx.fillStyle = 'hsl(112, 37%, ' + (32 + (Math.random() * 10)) + '%)';
-        ctx.fillRect(i, j, 1, 1);
+    ctx.fillStyle = 'hsl(112, 37%, 37%)';
+    ctx.fillRect(0, 0, 700, 235);
+    
+    // Now randomaly adjust the luminosity of each pixel.
+    var imgData = ctx.getImageData(0, 0, 700, 235);
+    for (var i=0; i<imgData.data.length; i+=4) {
+      var texture = (Math.random() * 0.2);
+      if (texture < 0.1) {
+        texture = 1.0 - texture;
+        imgData.data[i]=Math.floor(imgData.data[i] * texture);
+        imgData.data[i+1]=Math.floor(imgData.data[i+1] * texture);
+        imgData.data[i+2]=Math.floor(imgData.data[i+2] * texture);
+      } else {
+        texture = 0.8 + texture;
+        imgData.data[i]=Math.floor(imgData.data[i] / texture);
+        imgData.data[i+1]=Math.floor(imgData.data[i+1] / texture);
+        imgData.data[i+2]=Math.floor(imgData.data[i+2] / texture);
       }
     }
+    ctx.putImageData(imgData,0,0);
     return ctx.canvas;
   },
   
