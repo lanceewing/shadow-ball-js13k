@@ -1,6 +1,6 @@
 #Shadow Ball#
 
-Shadow Ball is a game in which you must shoot and kill the never ending armies of the four elements. To the north there is the Air army, to the east the Water army, to the south the Earth army, and to the west the Fire army. Each level adds increasingly more enemies in each room. But you have one advantage: The spirit Orb, providing an endless supply of golden power. But watch out for the deadly mist that protects the enemy forces, and remember to make regular trips back to the Orb to recharge.
+Shadow Ball is a game in which you must shoot and kill the never ending armies of the four elements. To the north there is the Air army, to the east the Water army, to the south the Earth army, and to the west the Fire army. Each level adds increasingly more enemies in each room. But you have one advantage: The spirit Orb; providing an endless supply of golden power for you to absorb. But watch out for the deadly mist that protects the enemy territories, and remember to make regular trips back to the Orb to recharge.
 
 This is an an entry for [js13kGames](http://js13kgames.com) 2014. The theme for this year was "The Elements: Earth, Water, Air and Fire". This is represented in Shadow Ball by the four enemy types, which each have a distinctive colour related to the Element they represent. The World Map is split into four main enemy zones relating to each Element, and the status line tells you which of these zones you are in.
 
@@ -8,12 +8,14 @@ This is an an entry for [js13kGames](http://js13kgames.com) 2014. The theme for 
 
 #Controls#
 **Move:** Arrows  
-**Jump:** SPACE  
+**Jump/Fly:** Space  
 **Fire:** M  
 **Absorb:** N  
 **Push:** B  
 **Pickup/Drop:** V  
 **Pause:** P  
+
+Hold down the Space key in mid-air to fly.
 
 #Notes#
 Best played in Chrome, on a reasonably fast computer with a semi-decent graphics card. Works reasonably well in Firefox as well.
