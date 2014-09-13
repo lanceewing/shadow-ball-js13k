@@ -4,7 +4,7 @@ Shadow Ball is a game in which you must shoot and kill the never ending armies o
 
 This is an an entry for [js13kGames](http://js13kgames.com) 2014. The theme for this year was "The Elements: Earth, Water, Air and Fire". This is represented in Shadow Ball by the four enemy types, which each have a distinctive colour related to the Element they represent. The World Map is split into four main enemy zones relating to each Element, and the status line tells you which of these zones you are in.
 
-**Final Size:** TODO
+**Final Size:** 12404 bytes
 
 #Controls#
 **Move:** Arrows  
@@ -31,4 +31,4 @@ I was hoping to build this game within a single canvas, but I ran into a number 
 
 #Screenshots#
 
-TODO
+![Shadow Ball Gameplay](https://sites.google.com/site/shadowballjs/files/shadow_ball.png "Shadow Ball Gameplay")
