@@ -31,4 +31,4 @@ I was hoping to build this game within a single canvas, but I ran into a number 
 
 # Screenshots
 
-![Shadow Ball Gameplay](https://sites.google.com/site/shadowballjs/files/shadow_ball.png "Shadow Ball Gameplay")
+![Shadow Ball Gameplay](img/screenshot_1.png)
